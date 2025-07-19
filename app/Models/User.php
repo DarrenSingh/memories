@@ -48,6 +48,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the loved ones associated with the user.
+     */
+    public function lovedOnes()
+    {
+        return $this->hasMany(LovedOne::class);
+    }
+
+    /**
+     * Get the memories associated with the user through loved ones.
+     */
+    public function memories()
+    {
+        return $this->hasManyThrough(Memory::class, LovedOne::class);
+    }
+
+    /**
      * Get the user's initials
      */
     public function initials(): string
@@ -55,7 +71,7 @@ class User extends Authenticatable
         return Str::of($this->name)
             ->explode(' ')
             ->take(2)
-            ->map(fn ($word) => Str::substr($word, 0, 1))
+            ->map(fn($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
 }
