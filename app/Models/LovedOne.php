@@ -9,11 +9,13 @@ class LovedOne extends Model
 
     protected $fillable = [
         'user_id',
+        'photo',
         'first_name',
         'middle_name',
         'last_name',
         'description',
         'date_of_birth',
+        'url',
     ];
 
     public function user()

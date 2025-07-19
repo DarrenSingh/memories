@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('loved_ones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('photo')->nullable();
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->text('description')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
