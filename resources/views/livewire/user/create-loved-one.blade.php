@@ -43,7 +43,7 @@ new class extends Component {
         $fileName = 'user_' . Auth::user()->id . '_' . Str::slug($this->first_name . '_' . $this->last_name, '_') . '.' . $extension;
 
         try {
-            $this->photoUpload->storeAs(path: 'profilePhotos', name: $fileName);
+            $this->photoUpload->storePubliclyAs(path: 'profilePhotos', name: $fileName);
             $this->photo = 'profilePhotos/' . $fileName;
 
         } catch (\Throwable $th) {
@@ -74,14 +74,15 @@ new class extends Component {
     <x-form wire:submit='create'>
 
         {{-- profile photo --}}
-        <h3>Let's start by adding a photo of your loved one!</h3>
-        <x-file class="justify-center" wire:model="photoUpload" accept="image/png" 
-        change-text="Upload Photo"
-        crop-text="Crop"
-        crop-title-text="Crop image"
-        crop-cancel-text="Cancel"
-        crop-save-text="Crop"
-        crop-after-change>
+        <h3 class="text-center lg:text-left">Let's start by adding a photo of your loved one!</h3>
+            <x-file  wire:model="photoUpload" accept="image/png" 
+            change-text="Upload Photo"
+            crop-text="Crop"
+            crop-title-text="Crop image"
+            crop-cancel-text="Cancel"
+            crop-save-text="Crop"
+            crop-after-change
+            class="flex justify-center lg:justify-start">
             <img src="{{ $user->avatar ?? '/images/upload.png' }}" class="h-40 rounded-lg center" />
         </x-file>
 

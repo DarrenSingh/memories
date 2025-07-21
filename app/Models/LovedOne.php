@@ -27,4 +27,19 @@ class LovedOne extends Model
     {
         return $this->hasMany(Memory::class);
     }
+
+    public function getFullNameAttribute()
+    {
+        return trim("{$this->first_name} {$this->middle_name} {$this->last_name}");
+    }
+
+    public function getAgeAttribute()
+    {
+        return $this->date_of_birth ? now()->diffInYears($this->date_of_birth) : null;
+    }
+
+    public function getPhotoUrlAttribute()
+    {
+        return $this->photo ? asset('storage/' . $this->photo) : asset('images/default-photo.png');
+    }
 }
