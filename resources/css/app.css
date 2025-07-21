@@ -74,14 +74,14 @@ select:focus[data-flux-control] {
 
 /** daisyUI */
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark;
+    themes: bumblebee --default, black --prefersdark;
 }
 
 /* maryUI */
 @source "../../vendor/robsontenorio/mary/src/View/Components/**/*.php";
 
 /* Theme toggle */
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant night (&:where(.dark, .dark *));
 
 /**
 * Paginator - Traditional style
